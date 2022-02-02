@@ -1,12 +1,15 @@
 class Api::V1::ProductsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
     @products = Product.all
   end
 
   def create
+    byebug
     @product = Product.new(product_params)
     if @product.save
-      render :show, status: :created
+      render :index, status: :created
     else
       render_error
     end
@@ -14,7 +17,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      render :show
+      render :index
     else
       render_error
     end
