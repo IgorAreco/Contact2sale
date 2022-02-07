@@ -6,6 +6,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def create
+    byebug
     @product = Product.new(product_params)
     if @product.save
       render :index, status: :created
