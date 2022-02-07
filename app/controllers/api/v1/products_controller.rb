@@ -1,12 +1,15 @@
 class Api::V1::ProductsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :set_product, only: [:update, :destroy]
+
+  # rescue ActiveRecord::RecordNotFound
+  #   render json: { message: 'Product not found' }
 
   def index
     @products = Product.all
   end
 
   def create
-    byebug
     @product = Product.new(product_params)
     if @product.save
       render :index, status: :created
@@ -17,20 +20,18 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      render :index
+      render :index, status: :accepted
     else
-      render_error
+      render json: { message: 'Not Updated' }
     end
   end
 
   def destroy
-    @product = Product.find(params[:id])
-    if @product.present?
-      @product.destroy
+    if @product.destroy
       render json: { message: 'Product has been deleted' }
+    else
+      render json: { message: 'Product not found' }
     end
-  rescue ActiveRecord::RecordNotFound
-    render json: { message: 'Product not found' }
   end
 
   private
@@ -40,7 +41,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :type, :rating, :price)
+    params.require(:product).permit(:title, :product_type, :rating, :price)
   end
 
   def render_error
