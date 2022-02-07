@@ -1,6 +1,6 @@
 class Api::V1::ProductsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_product, only: [:update, :destroy]
+  before_action :set_product, only: [:update, :destroy, :show]
 
   # rescue ActiveRecord::RecordNotFound
   #   render json: { message: 'Product not found' }
@@ -32,6 +32,10 @@ class Api::V1::ProductsController < ApplicationController
     else
       render json: { message: 'Product not found' }
     end
+  end
+
+  def show
+    render json: @product
   end
 
   private
