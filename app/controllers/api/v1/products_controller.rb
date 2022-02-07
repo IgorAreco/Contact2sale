@@ -20,7 +20,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      render :index, status: :accepted
+      render json: @product
     else
       render json: { message: 'Not Updated' }
     end
