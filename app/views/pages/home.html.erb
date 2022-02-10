@@ -1,0 +1,35 @@
+<div class='container pt-5 mt-3'>
+  <div>
+    <table class="table table-bordered">
+      <thead class="text-dark">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Type</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Price</th>
+          <th scope="col">Created</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+        <tbody>
+          <% @products.each do |product|  %>
+              <tr>
+                <td scope="col"><%= product.title %></td>
+                <td scope="col"><%= product.product_type  %></td>
+                <td scope="col"><%= product.rating  %></td>
+                <td scope="col"><%= product.price  %></td>
+                <td scope="col"><%= product.created_at.strftime("%d/%m/%Y")  %></td>
+                <td>
+                  <%= link_to api_v1_product_path(product), method: :delete do %>
+                    <%= fa_icon "edit" %>
+                  <% end %>
+                  <%= link_to api_v1_product_path(product), method: :delete do %>
+                    <%= fa_icon "trash" %>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+</div>
