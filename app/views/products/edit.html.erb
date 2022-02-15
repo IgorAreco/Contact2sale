@@ -1,11 +1,21 @@
 <div class="container">
+  <div class="row d-flex justify-content-center py-4">
+    <%= simple_form_for @product do |f| %>
     <div class="text-center">
-        <%= simple_form_for @product do |f| %>
-        <%= @product.title.capitalize %>
-        <%= f.input :product_type %>
-        <%= f.input :rating %>
-        <%= f.input :price %>
-        <%= f.button :submit, class:'btn btn-primary', data: { edit_product_target: 'submit'} %>
+      <%= @product.title.capitalize %>
     </div>
-  <% end %>
+    <div class="text-center mb-2">
+      <%= f.input :product_type, label: 'Type:' %>
+    </div>
+    <div class="text-center mb-2">
+      <%= f.input :rating, label: 'Rating:' %>
+    </div>
+    <div class="text-center mb-2">
+      <%= f.input :price, label: 'Price:' %>
+    </div>
+    <div class="text-center mb-2">
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+  </div>
 </div>
