@@ -4,6 +4,12 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempor, nisl at interdum venenatis, leo lacus mollis nunc, in pellentesque ex nibh quis magna. Integer dictum imperdiet eros sed eleifend.
   </div>
   <div>
+    <%= simple_form_for :product, url: file_path do |f| %>
+      <%= f.input :title %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <div>
     <table class="table border border-dark">
       <thead class="text-dark">
         <tr>

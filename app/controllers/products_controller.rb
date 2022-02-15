@@ -5,6 +5,10 @@ class ProductsController < ApplicationController
 
   end
 
+  def process_file
+    byebug
+  end
+
   def update
     if @product.update(product_params)
       redirect_to root_path
